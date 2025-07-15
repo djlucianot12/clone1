@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - Asmobius</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">All</a></li>
+                <li><a href="../">Focus</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <a href="../">Asmobius</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../about/">About</a></li>
+                <li><a href="#">En</a></li>
+                <li><a href="#">Cn</a></li>
+                <li><a href="#">Jp</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="projects">
+            <div class="project-list" id="project-list">
+                <!-- Projects will be loaded here dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Roate your device.</p>
+    </footer>
+
+    <script src="../js/projects.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectList = document.getElementById('project-list');
+            if (projectList && typeof projects !== 'undefined') {
+                projects.forEach(project => {
+                    const projectLink = document.createElement('a');
+                    projectLink.href = `project.html?id=${project.id}`;
+                    projectLink.classList.add('project');
+                    projectLink.textContent = project.name;
+                    projectList.appendChild(projectLink);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
