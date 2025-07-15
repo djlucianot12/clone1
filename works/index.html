@@ -5,51 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Works - Asmobius</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 10vw;
+        }
+        .work-item a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">All</a></li>
-                <li><a href="../">Focus</a></li>
-            </ul>
-        </nav>
         <div class="logo">
-            <a href="../">Asmobius</a>
+            <a href="/">Asmobius</a>
         </div>
         <nav>
             <ul>
-                <li><a href="../about/">About</a></li>
-                <li><a href="#">En</a></li>
-                <li><a href="#">Cn</a></li>
-                <li><a href="#">Jp</a></li>
+                <li><a href="/works">All</a></li>
+                <li><a href="/">Focus</a></li>
+                <li><a href="/about">About</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="projects">
-            <div class="project-list" id="project-list">
-                <!-- Projects will be loaded here dynamically -->
-            </div>
+        <section class="works-grid" id="works-grid">
+            <!-- Projects will be loaded here -->
         </section>
     </main>
-
-    <footer>
-        <p>Roate your device.</p>
-    </footer>
 
     <script src="../js/projects.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const projectList = document.getElementById('project-list');
-            if (projectList && typeof projects !== 'undefined') {
-                projects.forEach(project => {
-                    const projectLink = document.createElement('a');
-                    projectLink.href = `project.html?id=${project.id}`;
-                    projectLink.classList.add('project');
-                    projectLink.textContent = project.name;
-                    projectList.appendChild(projectLink);
+            const worksGrid = document.getElementById('works-grid');
+            if (worksGrid && typeof projects !== 'undefined') {
+                projects.forEach(projectName => {
+                    const workItem = document.createElement('div');
+                    workItem.className = 'work-item';
+                    const workLink = document.createElement('a');
+                    workLink.href = '#'; // Placeholder
+                    workLink.textContent = projectName;
+                    workItem.appendChild(workLink);
+                    worksGrid.appendChild(workItem);
                 });
             }
         });

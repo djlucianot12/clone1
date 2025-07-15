@@ -1,44 +1,85 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const projectList = document.querySelector('.project-list');
-    if (projectList && typeof projects !== 'undefined') {
-        projects.forEach(project => {
-            const projectLink = document.createElement('a');
-            projectLink.href = `works/project.html?id=${project.id}`;
-            projectLink.classList.add('project');
-            projectLink.textContent = project.name;
-            projectList.appendChild(projectLink);
+class SmoothScroller {
+    constructor() {
+        this.container = document.getElementById('smooth-scroll-container');
+        this.mainContent = document.querySelector('.horizontal-scroll');
+
+        this.data = {
+            current: 0,
+            target: 0,
+            ease: 0.075,
+        };
+
+        this.init();
+    }
+
+    init() {
+        this.setBodyHeight();
+        this.bindEvents();
+        this.raf();
+    }
+
+    setBodyHeight() {
+        document.body.style.height = `${this.mainContent.offsetWidth}px`;
+    }
+
+    bindEvents() {
+        window.addEventListener('resize', this.setBodyHeight.bind(this));
+        window.addEventListener('scroll', () => {
+            this.data.target = window.scrollY;
         });
     }
 
-    const nextButton = document.querySelector('.next');
-    const projectListWrapper = document.querySelector('.project-list-wrapper');
-
-    if (nextButton && projectListWrapper) {
-        nextButton.addEventListener('click', () => {
-            projectListWrapper.scrollBy({ left: 400, behavior: 'smooth' });
-        });
-    }
-
-    // Horizontal scroll animation
-    const scrollingWrapper = document.querySelector('.scrolling-wrapper');
-    let current = 0;
-    let target = 0;
-    const ease = 0.1;
-
-    function lerp(start, end, t) {
+    lerp(start, end, t) {
         return start * (1 - t) + end * t;
     }
 
-    function smoothScroll() {
-        target = window.scrollY;
-        current = lerp(current, target, ease);
-        scrollingWrapper.style.transform = `translateX(-${current}px)`;
-        requestAnimationFrame(smoothScroll);
+    raf() {
+        this.data.current = this.lerp(this.data.current, this.data.target, this.data.ease);
+        this.container.style.transform = `translateX(-${this.data.current}px)`;
+        requestAnimationFrame(this.raf.bind(this));
     }
+}
 
-    // Only enable smooth scrolling on the main page
-    if (scrollingWrapper) {
-        document.body.style.height = `${scrollingWrapper.scrollWidth}px`;
-        smoothScroll();
+function initProjectList() {
+    const projectListContainer = document.querySelector('.project-list');
+    if (projectListContainer && typeof projects !== 'undefined') {
+        projects.forEach(projectName => {
+            const projectItem = document.createElement('div');
+            projectItem.className = 'project-item';
+            const projectLink = document.createElement('a');
+            projectLink.href = '#'; // Placeholder for project page
+            projectLink.textContent = projectName;
+            projectItem.appendChild(projectLink);
+            projectListContainer.appendChild(projectItem);
+        });
     }
+}
+
+function initPageTransitions() {
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', e => {
+            const href = link.getAttribute('href');
+            // Ignore external links and anchor links
+            if (link.hostname !== window.location.hostname || href.startsWith('#')) {
+                return;
+            }
+
+            e.preventDefault();
+            document.body.classList.add('is-transitioning');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 500);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('smooth-scroll-container')) {
+        new SmoothScroller();
+    }
+    if (document.querySelector('.project-list')) {
+        initProjectList();
+    }
+    initPageTransitions();
 });

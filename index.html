@@ -7,52 +7,42 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="https://asmobius.co.jp/works/">All</a></li>
-                <li><a href="https://asmobius.co.jp/">Focus</a></li>
-            </ul>
-        </nav>
-        <div class="logo">
-            <a href="https://asmobius.co.jp/">Asmobius</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="https://asmobius.co.jp/about/">About</a></li>
-                <li><a href="#">En</a></li>
-                <li><a href="#">Cn</a></li>
-                <li><a href="#">Jp</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="smooth-scroll-container">
+        <header>
+            <div class="logo">
+                <a href="/">Asmobius</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/works">All</a></li>
+                    <li><a href="/">Focus</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <main>
-        <div class="scrolling-wrapper">
-            <section class="hero">
-                <h1>Hello.</h1>
-                <a href="mailto:info@asmobius.co.jp">info@asmobius.co.jp</a>
-            </section>
-
-            <section class="work">
-                <h2>Work Together.</h2>
-                <a href="mailto:jobs@asmobius.co.jp">jobs@asmobius.co.jp</a>
-            </section>
-
-            <section class="projects">
-                <div class="project-list-wrapper">
-                    <div class="project-list">
-                        <!-- Projects will be dynamically loaded here -->
-                    </div>
+        <main class="horizontal-scroll">
+            <section class="intro-section">
+                <div class="hello">Hello.</div>
+                <div class="contact-info">
+                    <a href="mailto:info@asmobius.co.jp">info@asmobius.co.jp</a>
                 </div>
-                <button class="next">Next</button>
             </section>
-        </div>
-    </main>
 
-    <footer>
-        <p>Roate your device.</p>
-    </footer>
+            <section class="work-together-section">
+                <div class="work-together">Work Together.</div>
+                <div class="contact-info">
+                    <a href="mailto:jobs@asmobius.co.jp">jobs@asmobius.co.jp</a>
+                </div>
+            </section>
+
+            <section class="projects-section">
+                <div class="project-list">
+                    <!-- Project items will be injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script src="js/projects.js"></script>
     <script src="js/main.js"></script>
