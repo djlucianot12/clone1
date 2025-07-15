@@ -1,118 +1,101 @@
+/* General Body Styles */
 body {
-    font-family: 'Helvetica Neue', sans-serif;
     margin: 0;
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
     background-color: #000;
     color: #fff;
-    overflow-x: hidden;
+    overflow: hidden; /* Hide scrollbars */
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
+body.is-transitioning {
+    opacity: 0;
+}
+
+#smooth-scroll-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+
+/* Header and Navigation */
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 40px;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
+    padding: 2rem;
+    z-index: 10;
     mix-blend-mode: difference;
+}
+
+.logo a, nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
 }
 
 nav ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
+    gap: 2rem;
 }
 
-nav li {
-    margin: 0 15px;
+/* Horizontal Scrolling Main Section */
+.horizontal-scroll {
+    display: flex;
+    height: 100vh;
+    padding: 0 10vw;
+    align-items: center;
 }
 
-nav a {
+/* Sections within the horizontal scroll */
+.intro-section, .work-together-section, .projects-section {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 5vw;
+}
+
+.hello, .work-together {
+    font-size: 10vw;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.contact-info a {
+    color: #fff;
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
+    font-size: 1.5vw;
 }
 
-.logo a {
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-}
-
-main {
-    padding: 20px;
-}
-
-.hero {
-    text-align: center;
-    padding: 100px 0;
-}
-
-.hero h1 {
-    font-size: 80px;
-    margin: 0;
-}
-
-.hero a {
-    font-size: 20px;
-    color: #333;
-    text-decoration: none;
-}
-
-.work {
-    text-align: center;
-    padding: 50px 0;
-}
-
-.work h2 {
-    font-size: 40px;
-}
-
-.work a {
-    font-size: 20px;
-    color: #333;
-    text-decoration: none;
-}
-
-.projects {
-    padding: 50px 0;
+/* Projects Section */
+.projects-section {
+    padding-left: 20vw;
 }
 
 .project-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex;
+    gap: 5vw;
 }
 
-.project {
-    background: #fff;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    color: #333;
-    border: 1px solid #ddd;
-    transition: background 0.3s;
+.project-item {
+    font-size: 5vw;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
-.project:hover {
-    background: #eee;
-}
-
-.next {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background: #333;
+.project-item a {
     color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    font-style: italic;
+    text-decoration: none;
 }
